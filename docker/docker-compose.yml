@@ -15,7 +15,7 @@ services:
       # - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       - ./dbdata:/var/lib/postgresql/data/:delegated
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: [ "CMD-SHELL", "pg_isready" ]
       interval: 10s
       timeout: 5s
       retries: 18
@@ -54,6 +54,8 @@ services:
       - EMAIL_HOST_USER=${EMAIL_HOST_USER}
       - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
       - EMAIL_USE_TLS=${EMAIL_USE_TLS}
+    ports:
+      - 4000:4000
     depends_on:
       dien_ban_db:
         condition: service_healthy
